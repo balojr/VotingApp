@@ -58,25 +58,28 @@ public class UserService implements UserDetailsService {
   }
 
 
-  public String signUpUser(User user) {
-    log.info("Signing up user {}", user);
+  public String signUpUser(User userDto) {
+    log.info("Signing up user {}", userDto);
 
-    boolean userEmailExists = userRepository.findByEmail(user.getEmail())
+    boolean userEmailExists = userRepository.findByEmail(userDto.getEmail())
       .isPresent();
 
     if (userEmailExists) {
-      throw new IllegalStateException(String.format(USER_EXISTS, user.getEmail()));
+      throw new IllegalStateException(String.format(USER_EXISTS, userDto.getEmail()));
     }
 
     // Add user
-    String encodedPassword = passwordEncoder.encode(user.getPassword());
+    String encodedPassword = passwordEncoder.encode(userDto.getPassword());
 
     // Set details
-    user.setPassword(encodedPassword);
+    userDto.setPassword(encodedPassword);
+    userDto.setCreatedAt(LocalDateTime.now());
+    userDto.setCreatedBy("System");
+
 
     // save the User in the database
-    userRepository.save(user);
-    log.info("User saved", user);
+    userRepository.save(userDto);
+    log.info("User saved", userDto);
 
     // generate confirmation token and save it to dB
     String token = UUID.randomUUID().toString();
@@ -84,7 +87,7 @@ public class UserService implements UserDetailsService {
       token,
       LocalDateTime.now(),
       LocalDateTime.now().plusMinutes(15),
-      user
+      userDto
     );
 
     confirmationTokenService.saveConfirmationToken(confirmationToken);

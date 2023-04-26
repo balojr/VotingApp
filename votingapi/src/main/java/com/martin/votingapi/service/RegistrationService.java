@@ -25,12 +25,12 @@ public class RegistrationService {
   public String register(RegisterUserRequest userRequest) {
 //
 //    log.info("Registering new home {}", registrationDto);
-//    boolean isValidEmail = emailValidator.test(registrationDto.getEmail());
+    boolean isValidEmail = emailValidator.test(userRequest.getEmail());
 //
 //    // TODO: Use better Exception handling methods
-//    if(!isValidEmail){
-//      throw new IllegalStateException(String.format(EMAIL_NOT_VALID,registrationDto.getEmail()));
-//    }
+    if(!isValidEmail){
+      throw new IllegalStateException(String.format(EMAIL_NOT_VALID,userRequest.getEmail()));
+    }
 //
 //    // create home
 //    Home home = new Home();
@@ -50,10 +50,10 @@ public class RegistrationService {
         userRequest.getEmail(),
         userRequest.getPassword(),
         UserRole.ADMIN,
-        userRequest.getCreatedBy(),
+        "system",
         userRequest.getCreatedAt()
       )
-    ); // add a user and attach the user to home
+    );
   }
 
   @Transactional

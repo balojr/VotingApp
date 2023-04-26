@@ -28,10 +28,10 @@ public class User  implements UserDetails {
   @Column(nullable = false)
   private String createdBy;
 
-  public User(String username, String password, String email, UserRole userRole, String createdBy, String createdAt) {
+  public User(String username,String email, String password,  UserRole userRole, String createdBy, String createdAt) {
     this.username = username;
-    this.password = password;
     this.email = email;
+    this.password = password;
     this.userRole = userRole;
     this.createdBy = createdBy;
     this.createdAt = LocalDateTime.now();
@@ -39,7 +39,9 @@ public class User  implements UserDetails {
   private Boolean locked = false;
   private Boolean enabled = false;
 
-//  security
+  public User() {}
+
+  //  security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
       SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRole.name());
@@ -54,7 +56,7 @@ public class User  implements UserDetails {
 
     @Override
     public String getUsername() {
-      return email;
+      return username;
     }
 
     @Override
