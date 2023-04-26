@@ -39,7 +39,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
   @Autowired
   UserSessionRepository userSessionRepository;
 
-//  @Override
+  @Override
   protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
     throws IOException, ServletException {
 
@@ -87,8 +87,4 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     chain.doFilter(req, res);
   }
 
-  @Override
-  protected void doFilterInternal(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response, jakarta.servlet.FilterChain filterChain) throws jakarta.servlet.ServletException, IOException {
-
-  }
 }
