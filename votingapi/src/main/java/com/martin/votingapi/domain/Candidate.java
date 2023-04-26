@@ -1,7 +1,7 @@
 package com.martin.votingapi.domain;
 
 import com.martin.votingapi.domain.enums.UserRole;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 @Entity
