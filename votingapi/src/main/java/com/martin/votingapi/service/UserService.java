@@ -44,6 +44,7 @@ public class UserService implements UserDetailsService {
   }
 
   public String signUpUser(RegisterUserRequest registerUserRequest, User loggedInUser) {
+
     registerUserRequest.setUserRole(UserRole.USER);
     User newUser = new User( registerUserRequest.getUsername(),
       registerUserRequest.getEmail(),
@@ -115,6 +116,9 @@ public class UserService implements UserDetailsService {
     Optional<User> user = userRepository.findById(id);
     log.info("Found user : {}", user);
     return user;
+  }
+  public User findByUsername(String username){
+    return userRepository.findUserByUsername(username);
   }
   public String deleteUser(Long id) {
     boolean exist = userRepository.existsById(id);
