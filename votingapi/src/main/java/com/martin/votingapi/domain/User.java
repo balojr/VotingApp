@@ -1,8 +1,8 @@
 package com.martin.votingapi.domain;
 
 import com.martin.votingapi.domain.enums.UserRole;
-import jakarta.persistence.*;
-import jakarta.persistence.Table;
+import javax.persistence.*;
+import javax.persistence.Table;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
