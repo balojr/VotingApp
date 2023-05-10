@@ -61,9 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         "/api/hello",
         "/api/token/refresh-token", //refresh token - we will not use it for now...
         "/api/registration", //used for registering a home - get a token[sent via email or sms]
-        "/api/registration/confirm", //step 1 reg - confirm with token to activate account
-        "/api/patient/downloadGuardianPhotoById/**",
-        "/api/patient/downloadPatientPhotoById/**"
+        "/api/registration/confirm" //step 1 reg - confirm with token to activate account
+        
       )
       .permitAll().anyRequest().authenticated().and().exceptionHandling()
       .authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
