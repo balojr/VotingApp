@@ -5,6 +5,6 @@ public class Constants {
   public static final String SIGNING_KEY = "20201LIPACHATQNATUJENGEQAZ2wsx4rfvBHUZ2wsx4rfvBHU*";
   public static final String TOKEN_PREFIX = "Bearer ";
   public static final String HEADER_STRING = "Authorization";
-  public static final String JWT_TOKEN_ISSUER = "https://cheri.natujenge.ke";
+  public static final String JWT_TOKEN_ISSUER = "https://voting.martin.ke";
 
 }
